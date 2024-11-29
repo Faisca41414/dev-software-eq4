@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 import sys
-if ("fastapi" not in  sys.argv[0]): 
+if ("fastapi" not in  sys.argv[0] and "uvicorn" not in sys.argv[0]): 
     raise Exception("\n\t🦄🦄🦄🦄🦄🦄🦄🦄\033[1;31m Please run this file with 'fastapi run dev'")
 app = FastAPI()
 
