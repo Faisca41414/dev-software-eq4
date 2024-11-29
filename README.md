@@ -15,6 +15,9 @@ project/
 
 
 ## Como executar:
+Para executar facilmente o backend e o frontend, execute primeiro os comandos separadamente, para configurar o ambiente,
+e depois rode:
+``python start.py``
 
 ### backend:
 ```bash
