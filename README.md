@@ -22,7 +22,7 @@ e depois rode:
 ### backend:
 ```bash
 pip install -r requirements.txt
-fastapi dev main.py
+python -m fastapi dev main.py
 ```
 
 ### frontend:
