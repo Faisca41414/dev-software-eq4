@@ -2,13 +2,15 @@
   import svelteLogo from './assets/svelte.svg'
   import viteLogo from '/vite.svg'
   import Counter from './Counter.svelte'
+  import {apiUrl} from './api.js'
 </script>
 
 <main>
   <div>
+    <p>teste {apiUrl}</p>
     <a href="https://vite.dev" target="_blank" rel="noreferrer">
       <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
+    </a> 
     <a href="https://svelte.dev" target="_blank" rel="noreferrer">
       <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
     </a>
