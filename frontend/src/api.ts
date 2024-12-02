@@ -6,7 +6,7 @@ interface Message{
 }
 
 
-export async function addData(msg: Message){
+export async function addFetchData(msg: Message){
     const response = await fetch(`${apiUrl}/addData`, {
         method: 'POST',
         headers: {
