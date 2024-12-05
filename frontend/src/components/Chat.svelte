@@ -1,5 +1,6 @@
 <!-- Chat.svelte -->
 <script lang="ts">
+    //essa é a sintaxe pra avisar que messages,message e handleadd sao variaveis compartilhadas com quem usa o componente
     export let messages: { username: string, message: string }[];
     export let message = "Hello sir";
     export let handleAdd: () => void;

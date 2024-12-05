@@ -25,6 +25,7 @@
 <main>
   <div>
     <h3>This is the chat component:</h3>
+    <!--  Repare que passamos pro chat a função handleAdd definida aqui que sera chamada quando o botao for apertado-->
     <Chat {handleAdd} bind:messages={messages} bind:message={message} />
   </div>
 </main>
