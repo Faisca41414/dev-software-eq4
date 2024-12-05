@@ -4,10 +4,10 @@
     import Counter from './Counter.svelte'
     import {apiUrl, addFetchData} from './api.js'
 
-    let messages=[{username: 'gpt', message:'hello, im gpt'}];
-    let username='Fulano';
-    let message='';
-    let error=''
+  let messages = [{ username: 'gpt', message: 'hello, im gpt' }, {username:'fulano', message:"my brother is ciclano"}];
+  let username = 'Fulano';
+  let message = '';
+  let error = '';
 
     async function  handleAdd() {
       try {        
