@@ -34,9 +34,11 @@ class Message(BaseModel):
 async def root():
     return {"message": "Hello World"}
 
+messagesyet=[]
 @app.post("/addData")
 async def root(msg: Message):
-    return [{'username': 'gpt', 'message': f'Youve sent me: {msg}'}]
+    messagesyet.extend([{'username': 'gpt', 'message': f'Im the backend and you have sent me this message: {msg}'}])
+    return messagesyet
 
 
 
