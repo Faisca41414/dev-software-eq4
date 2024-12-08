@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from typing import List
+import model as m
 import uvicorn
 import os
 import sys
@@ -24,10 +26,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+users = m.user_list
 
-class Message(BaseModel):
-    username: str
-    message: str
 
 
 @app.get("/")
@@ -35,10 +35,15 @@ async def root():
     return {"message": "Hello World"}
 
 messagesyet=[]
+
 @app.post("/addData")
-async def root(msg: Message):
-    messagesyet.extend([{'username': 'gpt', 'message': f'Im the backend and you have sent me this message: {msg}'}])
-    return messagesyet
+async def addData(msg: m.Message):
+    """Recebe uma mensagem nova, determina o usuario, pega a resposta 
+    de uma IA e adiciona no historico de mensagens
+    e retorna o historico de mensagens"""
+    #preencher aqui
+    messages =["eae"]
+    return messages
 
 
 
