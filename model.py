@@ -7,7 +7,7 @@ class Message(BaseModel):
     username: str
     content: str
 
-class GptMessage:
+class GptMessage(BaseModel):
     role: str
     content: str
 
@@ -42,17 +42,21 @@ class OpenaiInteface:
 class User():
     username: str
     message_history: List[GptMessage]
-    city: City
-    summarized_observations: str
-
+    def __init__(self, username="John Doe", message_history=[]):
+        self.username = username
+        self.message_history = message_history
     def addMessage(self, msg: Message):
         role = "assistant"
         if msg.username != "assistant":
             role = "user"
         self.message_history.append(GptMessage(role=role, content = msg.content))
     
-    def getMessageHistory(self):
-        return self.message_history
+    def getMessageHistory(self) -> List[Message]:
+        return [Message(username=item.username, content=item.content) for item in self.message_history]
     
 
 
+#exemplo#
+rob = User(username="Robinson", message_history=[])
+rob.addMessage(Message(username="robinser", content="eae"))
+#print(rob.message_history)
