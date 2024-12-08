@@ -23,8 +23,9 @@ def answerDummy(*args, **kwargs):
 
 user_list = {}
 class OpenaiInteface:
-    """Essa classe provê as respostas de um chatbot.
-    Essa classe deve preparar os parametros
+    """Essa classe proverÁ (quando isso for implementado) 
+    as respostas de um chatbot.
+    Essa classe deve preparar os parametros, prompts e outras coisas
     Parameters:
     useDummy (bool): usar um chatbot fake ou não;."""
     def __init__(self, useDummy=True, **kwargs):

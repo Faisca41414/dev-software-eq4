@@ -27,7 +27,7 @@ app.add_middleware(
 )
 
 users = m.user_list
-
+m.OpenaiInteface(useDummy=True)
 
 
 @app.get("/")
@@ -36,6 +36,7 @@ async def root():
 
 messagesyet=[]
 
+@app.post("/addMessage")
 @app.post("/addData")
 async def addData(msg: m.Message):
     """Recebe uma mensagem nova, determina o usuario, pega a resposta 
@@ -45,6 +46,10 @@ async def addData(msg: m.Message):
     messages =["eae"]
     return messages
 
+@app.post("/getMessages", response_model=List[m.GptMessage])
+async def getMessages(username:str) -> List[m.GptMessage]:
+    """"retorna as mensagens relativas a um usuário"""
+    pass
 
 
 
