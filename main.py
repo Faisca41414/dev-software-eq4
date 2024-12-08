@@ -27,7 +27,7 @@ app.add_middleware(
 )
 
 users = m.user_list
-m.OpenaiInteface(useDummy=True)
+openai = m.OpenaiInteface(useDummy=True)
 
 
 @app.get("/")
@@ -43,7 +43,8 @@ async def addData(msg: m.Message):
     de uma IA e adiciona no historico de mensagens
     e retorna o historico de mensagens"""
     #preencher aqui
-    messages =["eae"]
+    messages =[msg]
+    messages.append(m.Message(username="fakegpt", content=openai.getReply()))
     return messages
 
 @app.post("/getMessages", response_model=List[m.GptMessage])

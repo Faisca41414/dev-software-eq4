@@ -3,9 +3,9 @@
   import viteLogo from '/vite.svg'
   import Counter from './Counter.svelte'
   import Chat from './components/Chat.svelte'
-  import { apiUrl, addFetchData } from './api.js'
+  import { apiUrl, addMessage } from './api.js'
 
-  let messages = [{ username: 'gpt', message: 'hello, im gpt' }, {username:'fulano', message:"my brother is ciclano"}];
+  let messages = [{ username: 'gpt', content: 'hello, im gpt' }, {username:'fulano', content:"my brother is ciclano"}];
   let username = 'Fulano';
   let message = '';
   let error = '';
@@ -13,7 +13,7 @@
   //again, this function is purely an example.
   async function handleAdd() {
     try {
-      messages = await addFetchData({ username: username, message: message });
+      messages = await addMessage({ username: username, content: message });
       console.log(`messages: ${messages}`);
       message = '';
     } catch (e: any) {
