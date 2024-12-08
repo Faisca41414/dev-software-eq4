@@ -48,7 +48,8 @@ async def addData(msg: m.Message):
 
 @app.post("/getMessages", response_model=List[m.GptMessage])
 async def getMessages(username:str) -> List[m.GptMessage]:
-    """"retorna as mensagens relativas a um usuário"""
+    """"retorna as mensagens relativas a um usuário (mesmo que seja o usuario padrão)
+    Essa função devera receber o nome de usuario em um campo separado do json"""
     pass
 
 
