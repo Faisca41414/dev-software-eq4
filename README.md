@@ -15,7 +15,16 @@ project/
 
 
 ## Como executar:
-Para executar facilmente o backend e o frontend, execute primeiro os comandos separadamente, para configurar o ambiente,
+Para preparar o ambiente de desenvolvimento no Linux, MacOS, BSD ou outros sistemas com o shell **bash**, execute:
+```bash
+bash
+git clone https://github.com/AndreFGard/dev-software-eq4
+cd dev-software-eq4
+bash install_tools.sh
+
+```
+
+Depois Para executar facilmente o backend e o frontend, execute primeiro os comandos separadamente, para configurar o ambiente,
 e depois rode:
 ``python start.py``
 
