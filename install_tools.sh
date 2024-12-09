@@ -1,12 +1,12 @@
 pipurl="https://bootstrap.pypa.io/get-pip.py"
 wget $pipurl
 python3 get-pip.py
-echo '$PATH=$PATH:$HOME/.local/bin' >> $HOME/.bashrc
-export $PATH=$PATH:$HOME/.local/bin
+echo 'PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
+export PATH="$PATH:$HOME/.local/bin"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-alias python=python3
+
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
