@@ -3,7 +3,7 @@ wget $pipurl
 python3 get-pip.py
 echo 'PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
 export PATH="$PATH:$HOME/.local/bin"
-python3 -m venv .venv
+#python3 -m venv .venv # no venv because it's often not installed
 source .venv/bin/activate
 pip install -r requirements.txt
 
