@@ -56,7 +56,7 @@ class User():
         return [Message(username=item.username, content=item.content) for item in self.message_history]
 
 
-class City(BaseModel:
+class City(BaseModel):
     name:str
     state:str
     country:str
