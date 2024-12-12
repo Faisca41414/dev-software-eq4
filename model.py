@@ -3,10 +3,12 @@ from typing import List
 import openai
 import random
 
+# classe de mensagens do role: user
 class Message(BaseModel):
     username: str
     content: str
 
+# classe de mensagens do estilo gpt, o content é obtido pelo Message.content
 class GptMessage(BaseModel):
     role: str
     content: str
@@ -21,9 +23,9 @@ def answerDummy(*args, **kwargs):
     "big data",]
     return " ".join(random.sample(buzzwords, 3) )
 
-user_list = {}
+
 class OpenaiInteface:
-    """Essa classe proverÁ (quando isso for implementado) 
+    """Essa classe proverá (quando isso for implementado) 
     as respostas de um chatbot.
     Essa classe deve preparar os parametros, prompts e outras coisas
     Parameters:
@@ -39,23 +41,29 @@ class OpenaiInteface:
             #implementar aqui
             pass
 
-
+# classe de usuario
 class User():
     username: str
     message_history: List[GptMessage]
+    
     def __init__(self, username="John Doe", message_history=[]):
         self.username = username
         self.message_history = message_history
+
+    # adiciona mensagem comm base na role
     def addMessage(self, msg: Message):
         role = "assistant"
+
         if msg.username != "assistant":
             role = "user"
-        self.message_history.append(GptMessage(role=role, content = msg.content))
-    
-    def getMessageHistory(self) -> List[Message]:
-        return [Message(username=item.username, content=item.content) for item in self.message_history]
-    
 
+        self.message_history.append(GptMessage(role=role, content=msg.content))
+    
+    # retorna cada mensagem do historico no formato de Message
+    def getMessageHistory(self) -> List[Message]:
+        return [Message(username=item.role, content=item.content) for item in self.message_history]
+    
+user_list = {"André" : User(username="André", message_history=[GptMessage(role="user", content="Se estou lendo isso, é porque deu certo")])}
 
 #exemplo#
 rob = User(username="Robinson", message_history=[])
