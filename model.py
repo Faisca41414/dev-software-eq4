@@ -15,11 +15,65 @@ class GptMessage(BaseModel):
     content: str
 
 #todo: implementar a logica de achar uma cidade mais apropriadamente
-class City:
+class City(BaseModel):
     name:str
+    state:str
+    country:str
+    data:dict
+    id: int
 
-    def __init__(self, name):
+    def __init__(self, name:str, state:str, country:str, data:dict, id:int):
         self.name = name
+        self.state = state
+        self.country = country
+        self.data = data
+        self.id = id
+
+class CityValidator:
+    def __init__(self):
+        import json
+        filename="countrie_states_cities.json"
+        fileurl='https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/refs/heads/master/json/countries%2Bstates%2Bcities.json'
+        f = None
+
+        try:
+            f = open(filename)
+        except:
+            import os
+            os.system(f"curl {fileurl} -o {filename}")
+            f = open(filename)
+
+        j = json.load(f)
+
+        countries = {ct["name"]:ct for ct in j}
+        cities ={}
+        city_ids = {}
+
+        for ct in countries.values():
+            ct['states'] = {st["name"]:st for st in ct['states']}
+
+            for st in ct["states"].values():
+                st['cities'] = {city['name']:city for city in st['cities']}
+
+                for city in st['cities'].values():
+                    if city['name'] not in cities:
+                        cities[city['name']] = []
+                    
+                    cities[city['name']].append({'name':city['name'], 'state': st['name'], 'country': ct['name'], 'data':city, 'id':city['id']})
+                    city_ids[city['id']] = city
+        
+        self.countries = countries
+        self.cities = cities
+        self.city_ids = city_ids
+
+    #TODO
+    def city_matches_name(self, name:str) -> List[City]:
+        """"Retorna todas as cidades com o mesmo nome"""
+        return self.cities['Recife']
+    
+    #TODO
+    def city_matches_name_state(self, name:str, state:str) -> List[City]:
+        return self.cities['Recife'] # sample
 
 # classe que vai ter as informações de um lugar
 class Place:
@@ -34,12 +88,6 @@ class Place:
 
     # checando se o lugar existe no banco de dados
     def find(self, country, state, city) -> bool:
-        if country not in database_lugares.values():
-            return False
-        
-        if state not in database_lugares[country].values():
-            return False
-        
         return True
 
 def answerDummy(*args, **kwargs):
@@ -47,7 +95,6 @@ def answerDummy(*args, **kwargs):
     "synergy", "pivot", ",", "mas também", "blockchain", ", além de ", "cloud-native", ".",
     "big data",]
     return " ".join(random.sample(buzzwords, 3) )
-
 
 class OpenaiInteface:
     """Essa classe proverá (quando isso for implementado) 
