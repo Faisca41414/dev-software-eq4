@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import List
 import openai
 import random
+import numpy as np
 
 # classe de mensagens do role: user
 class Message(BaseModel):
@@ -16,6 +17,30 @@ class GptMessage(BaseModel):
 #todo: implementar a logica de achar uma cidade mais apropriadamente
 class City:
     name:str
+
+    def __init__(self, name):
+        self.name = name
+
+# classe que vai ter as informações de um lugar
+class Place:
+    country: str
+    state: str
+    city : City
+
+    def __init__(self, country, state, city):
+        self.country = country
+        self.state = state
+        self.city = city
+
+    # checando se o lugar existe no banco de dados
+    def find(self, country, state, city) -> bool:
+        if country not in database_lugares.values():
+            return False
+        
+        if state not in database_lugares[country].values():
+            return False
+        
+        return True
 
 def answerDummy(*args, **kwargs):
     buzzwords = [ "Dev Software", "Concepcao de artefatos", "????", "Forms", "Eigenvalues "
@@ -62,8 +87,12 @@ class User():
     # retorna cada mensagem do historico no formato de Message
     def getMessageHistory(self) -> List[Message]:
         return [Message(username=item.role, content=item.content) for item in self.message_history]
-    
+
+# banco de dados de usuarios (provisorio)
 user_list = {"André" : User(username="André", message_history=[GptMessage(role="user", content="Se estou lendo isso, é porque deu certo")])}
+
+# banco de dados de lugares (provisorio)
+database_lugares = {"País1" : {"Estado1" : np.array(['Cidade1'])}}
 
 #exemplo#
 rob = User(username="Robinson", message_history=[])
